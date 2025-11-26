@@ -26,8 +26,15 @@ Ti sarà richiesto di creare una repository Github che contenga il codice per ri
 
 Il sistema GenAI che creerai dovrà essere in grado di rispondere alle domande presenti in questo [csv](./Dataset/domande.csv). Le domande sono ordinate per difficoltà e per tipologia.
 
-Le domande sono in linguaggio naturale ma hanno come risposta univoca una lista di piatti. Ad esempio, la prima domanda "Quali sono i piatti che includono le Chocobo Wings come ingrediente?", ha come risposta \["Galassia di Sapori: Il Viaggio Senza Tempo"\], mentre la domanda 10 "Quali piatti eterei sono preparati usando sia la Cottura Olografica Quantum Fluttuante che la Decostruzione Interdimensionale Lovecraftiana?" ha come risposta i piatti \["Risotto dei Multiversi", "La Mucca Che Stordisce l'Universo", "Sogni di Abisso Cosmico"\]
+Per la precisione:
+- le domande di difficoltà "Easy" riguardano solo gli Ingredienti e le Tecniche, pertando bastano solo i [Menu](./Dataset/knowledge_base/menu/) di ciascun ristorante
+- le domande di difficoltà "Medium" riguardano anche le Licenze e i Pianeti. Nei [Menu](./Dataset/knowledge_base/menu/) sono descritte il livello di Licenza di ogni Chef e il Pianeta su cui si trova il ristorante. Sebbene non necessario, all'interno del [`Manuale di Cucina.pdf`](./Dataset/knowledge_base/misc/Manuale%20di%20Cucina.pdf) e [`Codice Galattico.pdf`](./Dataset/knowledge_base/codice_galattico/Codice%20Galattico.pdf) vi è una descrizione di come funzionano le licenze.
+- le domande di difficoltà "Hard" riguardano le distanze tra pianeti, i tipi di cottura/preparazione e la licenza necessaria per la preparazione (ogni piatto necessità di certe tecnica e ogni tecnica necessità di certe licenze). Il [`Distanze.csv`](./Dataset/knowledge_base/misc/Distanze.csv) c'è la tabella delle distanze tra pianeti. Il pdf [Manuale di Cucina.pdf](./Dataset/knowledge_base/misc/Manuale%20di%20Cucina.pdf) contiene le ultime due informazioni.
+- le domande di difficoltà "Impossible" riguardano piccoli dettagli che si trovano all'interno di [`Codice Galattico.pdf`](./Dataset/knowledge_base/codice_galattico/Codice%20Galattico.pdf) e [`Blog post`](./Dataset/knowledge_base/blogpost/)
 
+Le domande sono in linguaggio naturale ma hanno come risposta univoca una lista di piatti. Ad esempio, la prima domanda "Quali sono i piatti che includono le Chocobo Wings come ingrediente?", ha come risposta "Galassia di Sapori: Il Viaggio Senza Tempo", mentre la domanda 10 "Quali piatti eterei sono preparati usando sia la Cottura Olografica Quantum Fluttuante che la Decostruzione Interdimensionale Lovecraftiana?" ha come risposta i piatti "Risotto dei Multiversi", "La Mucca Che Stordisce l'Universo" e "Sogni di Abisso Cosmico".
+
+⚠️⚠️⚠️**IMPORTANTE**⚠️⚠️⚠️: Se hai poco tempo, sentiti di fermati SOLO alle domande di difficoltà "Easy". Decidi tu se vuoi migliorare la tua soluzione esistente o cercare di trovare soluzioni per domande più difficili. Un sistema capace di rispondere alle domande "Easy" è già un buon risultato.
 
 ### Descrizione Knowledge Base 📋
 
