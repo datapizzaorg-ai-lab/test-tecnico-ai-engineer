@@ -24,18 +24,18 @@ Nel cuore pulsante di questo arcipelago cosmico di sapori, si erge un elemento d
 
 Ti sarà richiesto di creare una repository Github che contenga il codice per risolvere in maniera parziale o totale la sfida di Hackapizza.
 
-Il sistema GenAI che creerai dovrà essere in grado di rispondere alle domande presenti in questo [csv](./dataset/domande.csv). Le domande sono ordinate per difficoltà e per tipologia.
+Il sistema GenAI che creerai dovrà essere in grado di rispondere alle domande presenti in questo [csv](./Dataset/domande.csv). Le domande sono ordinate per difficoltà e per tipologia.
 
 Le domande sono in linguaggio naturale ma hanno come risposta univoca una lista di piatti. Ad esempio, la prima domanda "Quali sono i piatti che includono le Chocobo Wings come ingrediente?", ha come risposta \["Galassia di Sapori: Il Viaggio Senza Tempo"\], mentre la domanda 10 "Quali piatti eterei sono preparati usando sia la Cottura Olografica Quantum Fluttuante che la Decostruzione Interdimensionale Lovecraftiana?" ha come risposta i piatti \["Risotto dei Multiversi", "La Mucca Che Stordisce l'Universo", "Sogni di Abisso Cosmico"\]
 
 
 ### Descrizione Knowledge Base 📋
 
-Dentro la cartella [knowledge_base](./dataset/knowledge_base), ci sono tutti i file necessari per l'applicativo GenAI per rispondere alle domande.   
+Dentro la cartella [knowledge_base](./Dataset/knowledge_base), ci sono tutti i file necessari per l'applicativo GenAI per rispondere alle domande.   
 
 All'interno troverai i seguenti file e cartelle:
 
-- `Manuale di Cucina.pdf`
+- [`Manuale di Cucina.pdf`](./Dataset/knowledge_base/misc/Manuale%20di%20Cucina.pdf)
     
     Manuale di cucina che include:
     
@@ -46,7 +46,7 @@ All'interno troverai i seguenti file e cartelle:
     - \[Hint\] La maggior parte del testo è flavuor e non serve per rispondere alle domande.
     - \[Hint\] Gli ordini professionali sono perlopiù usati da alcuni utenti che esprimono una preferenza verso una specifica tecnica. Questa tecnica in genere è riportata nei menu attraverso l'uso di emoji + glossario.
 
-- `Menu (30 ristoranti)`
+- [`Menu (30 ristoranti)`](./Dataset/knowledge_base/menu/)
     
     - Documenti in pdf contenenti i menù di 30 ristoranti differenti
     - I menu descrivono in linguaggio naturale il ristorante, riportando il nome dello Chef, il nome del ristorante, (laddove presente) il pianeta su cui c'è il ristorante e le licenze culinarie che ha lo chef
@@ -55,11 +55,11 @@ All'interno troverai i seguenti file e cartelle:
     - Alcuni menu possiedono anche una descrizione in linguaggio naturale della preparazione
     - Laddove via siano certi ordini professionali, i menu lo citano
 
-- `planets_distance_matrix.csv`
+- [`Distanze.csv`](./Dataset/knowledge_base/misc/Distanze.csv)
     Un csv che contiene la matrice delle distanze in anni luce tra i pianeti su cui si trovano i diversi ristoranti.    
     \[Hint\] Alcune domande fanno riferimento a volere dei piatti all'interno di una certa distanza. Ogni ristorante (eccetto uno) si trova su un pianeta.
 
-- `Codice Galattico.pdf`
+- [`Codice Galattico.pdf`](./Dataset/knowledge_base/codice_galattico/Codice%20Galattico.pdf)
     
     Un documento legislativo contenente:
     
@@ -67,7 +67,7 @@ All'interno troverai i seguenti file e cartelle:
     - \[Hint\] Alcuni utenti potrebbero chiedere che il loro piatto rispetti tali limiti, pertanto è necessario controllare la presenza di tali ingredienti e fare una crossref sulla quantità
     - Vincoli relativi alle certificazioni che gli chef hanno bisogno di acquisire per poter utilizzare specifiche tecniche di preparazione dei piatti
     - \[Hint\] Alcuni utenti potrebbero chiedere che lo chef che prepara il piatto abbia le certificazioni a norma per cucinare tale piatto, pertanto è necessario controllare per ogni tecnica se lo chef ha la certificazione al livello corretto
-    - \[Hint\] Questo documento, le informazioni da estrarre e da rielaborare, sono le più difficili del test tecnico e hanno impatto solo sulle ultime 4 domande del [csv](./dataset/domande.csv).
+    - \[Hint\] Questo documento, le informazioni da estrarre e da rielaborare, sono le più difficili del test tecnico e hanno impatto solo sulle ultime 4 domande del [csv](./Dataset/domande.csv).
 
 - `Blog post`
 
@@ -77,7 +77,7 @@ All'interno troverai i seguenti file e cartelle:
 
 ### Evaluation
 
-Per supportare lo sviluppo e la verifica del tuo sistema, nella cartella [dataset/ground_truth](./dataset/ground_truth) troverai i file necessari per l'evaluation.
+Per supportare lo sviluppo e la verifica del tuo sistema, nella cartella [dataset/ground_truth](./Dataset/ground_truth) troverai i file necessari per l'evaluation.
 
 **Attenzione**: la ground truth non deve essere utilizzata dal sistema GenAI per generare le risposte, ma serve esclusivamente per valutare le performance. Il dataset è suddiviso in *public* e *private* (vedi colonna "Usage" in `ground_truth_mapped.csv`) nel caso tu voglia suddividere test e validation.
 
@@ -87,7 +87,7 @@ Il punteggio finale è la **media** della Jaccard Similarity su tutte le domande
 
 #### Formato della Submission
 
-Il tuo sistema dovrà produrre un file CSV contenente le risposte per tutte le domande presenti in [domande.csv](./dataset/domande.csv).
+Il tuo sistema dovrà produrre un file CSV contenente le risposte per tutte le domande presenti in [domande.csv](./Dataset/domande.csv).
 Il file deve avere le colonne `row_id` e `result`:
 
 ```csv
@@ -106,10 +106,10 @@ row_id,result
 ```
 
 **Dettagli dei campi:**
-- `row_id`: l'ID progressivo della domanda (corrispondente alla riga nel file [domande.csv](./dataset/domande.csv)).
+- `row_id`: l'ID progressivo della domanda (corrispondente alla riga nel file [domande.csv](./Dataset/domande.csv)).
 - `result`: una stringa contenente gli ID dei piatti identificati, separati da virgola.
     - **Nota**: Il campo non può essere vuoto. Si assume che esista sempre almeno un piatto che soddisfi la query.
-    - **Mapping**: Per ottenere gli ID corretti, associa i nomi dei piatti trovati agli ID corrispondenti utilizzando il file [dish_mapping.json](./dataset/ground_truth/dish_mapping.json).
+    - **Mapping**: Per ottenere gli ID corretti, associa i nomi dei piatti trovati agli ID corrispondenti utilizzando il file [dish_mapping.json](./Dataset/ground_truth/dish_mapping.json).
 
 #### Esempio
 
