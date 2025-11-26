@@ -108,8 +108,8 @@ row_id,result
 **Dettagli dei campi:**
 - `row_id`: l'ID progressivo della domanda (corrispondente alla riga nel file [domande.csv](./Dataset/domande.csv)), incrementale a partire da 1.
 - `result`: una stringa contenente gli ID dei piatti identificati, separati da virgola.
-    - **Nota**: Il campo non può essere vuoto. Si assume che esista sempre almeno un piatto che soddisfi la query.
-    - **Mapping**: Per ottenere gli ID corretti, associa i nomi dei piatti trovati agli ID corrispondenti utilizzando il file [dish_mapping.json](./Dataset/ground_truth/dish_mapping.json).
+    - **Nota**: il campo non può essere vuoto. Si assume che esista sempre almeno un piatto che soddisfi la query.
+    - **Mapping**: per ottenere gli ID corretti, associa i nomi dei piatti trovati agli ID corrispondenti utilizzando il file [dish_mapping.json](./Dataset/ground_truth/dish_mapping.json).
 
 #### Esempio
 
@@ -122,7 +122,7 @@ Immaginiamo che il tuo sistema ritorni come risposta:
 ```
 
 Se il file `dish_mapping.json` contiene:
-```json
+```
 {
     ...
     "Risotto all'Erba Pipa": 1,
