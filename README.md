@@ -69,7 +69,7 @@ All'interno troverai i seguenti file e cartelle:
     - \[Hint\] Alcuni utenti potrebbero chiedere che lo chef che prepara il piatto abbia le certificazioni a norma per cucinare tale piatto, pertanto è necessario controllare per ogni tecnica se lo chef ha la certificazione al livello corretto
     - \[Hint\] Questo documento, le informazioni da estrarre e da rielaborare, sono le più difficili del test tecnico e hanno impatto solo sulle ultime 4 domande del [csv](./Dataset/domande.csv).
 
-- `Blog post`
+- [`Blog post`](./Dataset/knowledge_base/blogpost/)
 
     - Pagine HTML che contengono informazioni supplementari su alcuni ristoranti
     - \[Hint\] Sono necessari solo per un numero limitatissimo di domande, da usare congiuntamente con il Codice Galattico.pdf
