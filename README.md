@@ -76,9 +76,67 @@ All'interno troverai i seguenti file e cartelle:
 
 
 ### Evaluation
-Per aiutarvi nel test tecnico, dentro la cartella [dataset](./dataset/ground_truth) troverai il necessario per fare l'evaluation. Tuttavia la ground truth (almeno di considerazioni particolari) non va usata all'interno del sistema GenAI. Il dataset è già diviso in public / private nel caso vogliate fare validation/test dataset.
 
-Per lanciare l'evaluation delle tua soluzione, vi consigliamo di usare il seguente comando:
-```python
+Per supportare lo sviluppo e la verifica del tuo sistema, nella cartella [dataset/ground_truth](./dataset/ground_truth) troverai i file necessari per l'evaluation.
+
+**Attenzione**: la ground truth non deve essere utilizzata dal sistema GenAI per generare le risposte, ma serve esclusivamente per valutare le performance. Il dataset è suddiviso in *public* e *private* (vedi colonna "Usage" in `ground_truth_mapped.csv`) per permetterti di effettuare validation e testing separati se lo ritieni necessario.
+
+L'evaluation misura la correttezza delle risposte confrontando i piatti restituiti dal tuo sistema con quelli attesi. Lo script di valutazione calcola la **Jaccard Similarity** tra le due liste di piatti per ogni query presente in [domande.csv](./dataset/domande.csv).
+
+#### Formato della Submission
+
+Il tuo sistema dovrà produrre un file CSV formattato come segue:
+
+```csv
+row_id,result
+1,"23,122"
+2,"12"
+3,"11,87"
+4,"34,43"
+5,"112"
+6,"56"
+7,"99"
+8,"102,103"
+9,"11"
+10,"11,34"
+...
+```
+
+**Dettagli dei campi:**
+- `row_id`: l'ID progressivo della domanda (corrispondente alla riga nel file [domande.csv](./dataset/domande.csv)).
+- `result`: una stringa contenente gli ID dei piatti identificati, separati da virgola.
+    - **Nota**: Il campo non può essere vuoto. Si assume che esista sempre almeno un piatto che soddisfi la query.
+    - **Mapping**: Per ottenere gli ID corretti, associa i nomi dei piatti trovati agli ID corrispondenti utilizzando il file [dish_mapping.json](./dataset/ground_truth/dish_mapping.json).
+
+#### Esempio
+
+**Domanda**: "Vorrei assaggiare l'Erba Pipa. In quali piatti la posso trovare?"
+
+Immaginamo che il tuo sistema ritorni come risposta:
+
+```json
+["Risotto all'Erba Pipa", "Insalata Galattica"]
+```
+
+Se il file `dish_mapping.json` contiene:
+```json
+{
+    ...
+    "Risotto all'Erba Pipa": 1,
+    ...
+    "Insalata Galattica": 5,
+    ...
+}
+```
+La risposta attesa nel CSV per questa domanda sarà `"1,5"`.
+
+#### Eseguire l'Evaluation
+
+Una volta generato il file CSV con le tue risposte, puoi calcolare il punteggio eseguendo lo script fornito:
+
+```bash
 python src/evaluation.py --submission path/to/your_submission.csv
 ```
+
+Lo script stamperà il valore di Jaccard similarity media per ogni domanda.
+
