@@ -3,7 +3,7 @@ import sys
 import click
 import pandas as pd
 
-from metrics.jaccard_similarity import ParticipantVisibleError, score
+from metrics.jaccard_similarity import score
 
 
 @click.command()
@@ -34,8 +34,8 @@ def main(submission: str, row_id_column: str) -> None:
             submission=submission_df,
             row_id_column_name=row_id_column,
         )
-    except ParticipantVisibleError as e:
-        click.echo(f"Evaluation failed: {e}", err=True)
+    except ValueError as e:
+        click.echo(f"Invalid submission: {e}", err=True)
         sys.exit(1)
 
     click.echo(f"Jaccard similarity score: {jaccard_score:.4f}")

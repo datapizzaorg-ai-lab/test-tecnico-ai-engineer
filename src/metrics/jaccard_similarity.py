@@ -2,10 +2,6 @@ import pandas as pd
 import pandas.api.types
 
 
-class ParticipantVisibleError(Exception):
-    pass
-
-
 def score(
     solution: pd.DataFrame, submission: pd.DataFrame, row_id_column_name: str
 ) -> float:
@@ -54,20 +50,18 @@ def score(
     # Check that all submission columns contain valid lists
     for col in submission.columns:
         if not pandas.api.types.is_object_dtype(submission[col]):
-            raise ParticipantVisibleError(
-                f"Submission column {col} must contain lists of integers"
-            )
+            raise ValueError(f"Submission column {col} must contain lists of integers")
         try:
             # Check that all non-empty values are lists of integers
             valid_lists = submission[col].apply(
                 lambda x: isinstance(x, list) and all(isinstance(i, int) for i in x)
             )
             if not valid_lists.all():
-                raise ParticipantVisibleError(
+                raise ValueError(
                     f"Submission column {col} must contain valid lists of integers"
                 )
         except Exception as e:
-            raise ParticipantVisibleError(f"Error processing column {col}: {str(e)}")
+            raise ValueError(f"Error processing column {col}: {str(e)}")
 
     # Define a helper function for Jaccard similarity
     def jaccard_similarity(list1, list2):
