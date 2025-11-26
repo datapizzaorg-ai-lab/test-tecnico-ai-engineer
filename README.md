@@ -79,13 +79,16 @@ All'interno troverai i seguenti file e cartelle:
 
 Per supportare lo sviluppo e la verifica del tuo sistema, nella cartella [dataset/ground_truth](./dataset/ground_truth) troverai i file necessari per l'evaluation.
 
-**Attenzione**: la ground truth non deve essere utilizzata dal sistema GenAI per generare le risposte, ma serve esclusivamente per valutare le performance. Il dataset è suddiviso in *public* e *private* (vedi colonna "Usage" in `ground_truth_mapped.csv`) per permetterti di effettuare validation e testing separati se lo ritieni necessario.
+**Attenzione**: la ground truth non deve essere utilizzata dal sistema GenAI per generare le risposte, ma serve esclusivamente per valutare le performance. Il dataset è suddiviso in *public* e *private* (vedi colonna "Usage" in `ground_truth_mapped.csv`) nel caso tu voglia suddividere test e validation.
 
-L'evaluation misura la correttezza delle risposte confrontando i piatti restituiti dal tuo sistema con quelli attesi. Lo script di valutazione calcola la **Jaccard Similarity** tra le due liste di piatti per ogni query presente in [domande.csv](./dataset/domande.csv).
+L'evaluation misura la correttezza delle risposte confrontando i piatti restituiti dal tuo sistema con quelli attesi.
+La metrica utilizzata è la **Jaccard Similarity**, calcolata per ogni domanda come l'intersezione diviso l'unione degli ID dei piatti.
+Il punteggio finale è la **media** della Jaccard Similarity su tutte le domande, moltiplicata per 100.
 
 #### Formato della Submission
 
-Il tuo sistema dovrà produrre un file CSV formattato come segue:
+Il tuo sistema dovrà produrre un file CSV contenente le risposte per tutte le domande presenti in [domande.csv](./dataset/domande.csv).
+Il file deve avere le colonne `row_id` e `result`:
 
 ```csv
 row_id,result
@@ -112,7 +115,7 @@ row_id,result
 
 **Domanda**: "Vorrei assaggiare l'Erba Pipa. In quali piatti la posso trovare?"
 
-Immaginamo che il tuo sistema ritorni come risposta:
+Immaginiamo che il tuo sistema ritorni come risposta:
 
 ```json
 ["Risotto all'Erba Pipa", "Insalata Galattica"]
@@ -129,6 +132,13 @@ Se il file `dish_mapping.json` contiene:
 }
 ```
 La risposta attesa nel CSV per questa domanda sarà `"1,5"`.
+Se questa è la domanda `1`, allora:
+
+```csv
+row_id,result
+1,"1,5"
+...
+```
 
 #### Eseguire l'Evaluation
 
@@ -138,5 +148,5 @@ Una volta generato il file CSV con le tue risposte, puoi calcolare il punteggio 
 python src/evaluation.py --submission path/to/your_submission.csv
 ```
 
-Lo script stamperà il valore di Jaccard similarity media per ogni domanda.
+Lo script stamperà il **Jaccard similarity score** medio complessivo.
 
