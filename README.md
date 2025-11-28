@@ -22,25 +22,35 @@ Nel cuore pulsante di questo arcipelago cosmico di sapori, si erge un elemento d
 
 ### Specifiche tecniche 💻
 
-Ti sarà richiesto di creare una repository Github che contenga il codice per risolvere in maniera parziale o totale la sfida di Hackapizza.
+Ti sarà richiesto di creare una repository Github che contenga il codice per risolvere in maniera parziale o totale questo test.
 
-Il sistema GenAI che creerai dovrà essere in grado di rispondere alle domande presenti in questo [csv](./Dataset/domande.csv). Le domande sono ordinate per difficoltà e per tipologia.
+Il sistema GenAI che creerai dovrà essere in grado di rispondere alle domande presenti in questo [csv](./Dataset/domande.csv).
 
-Per la precisione:
-- le domande di difficoltà "Easy" riguardano solo gli Ingredienti e le Tecniche, pertanto bastano solo i [Menu](./Dataset/knowledge_base/menu/) di ciascun ristorante
-- le domande di difficoltà "Medium" riguardano anche le Licenze e i Pianeti. Nei [Menu](./Dataset/knowledge_base/menu/) sono descritti il livello di Licenza di ogni Chef e il Pianeta su cui si trova il ristorante. Sebbene non necessario, all'interno del [`Manuale di Cucina.pdf`](./Dataset/knowledge_base/misc/Manuale%20di%20Cucina.pdf) e [`Codice Galattico.pdf`](./Dataset/knowledge_base/codice_galattico/Codice%20Galattico.pdf) vi è una descrizione di come funzionano le licenze.
-- le domande di difficoltà "Hard" riguardano le distanze tra pianeti, i tipi di cottura/preparazione e la licenza necessaria per la preparazione (ogni piatto necessita di certe tecniche e ogni tecnica necessita di certe licenze). Nel [`Distanze.csv`](./Dataset/knowledge_base/misc/Distanze.csv) c'è la tabella delle distanze tra pianeti. Il pdf [Manuale di Cucina.pdf](./Dataset/knowledge_base/misc/Manuale%20di%20Cucina.pdf) contiene le ultime due informazioni.
-- le domande di difficoltà "Impossible" riguardano piccoli dettagli che si trovano all'interno di [`Codice Galattico.pdf`](./Dataset/knowledge_base/codice_galattico/Codice%20Galattico.pdf) e [`Blog post`](./Dataset/knowledge_base/blogpost/)
+Le domande sono in linguaggio naturale e hanno come risposta univoca una lista di piatti. Ad esempio, la prima domanda "Quali sono i piatti che includono le Chocobo Wings come ingrediente?", ha come risposta "Galassia di Sapori: Il Viaggio Senza Tempo", mentre la domanda 10 "Quali piatti eterei sono preparati usando sia la Cottura Olografica Quantum Fluttuante che la Decostruzione Interdimensionale Lovecraftiana?" ha come risposta i piatti "Risotto dei Multiversi", "La Mucca Che Stordisce l'Universo" e "Sogni di Abisso Cosmico".
 
-Le domande sono in linguaggio naturale ma hanno come risposta univoca una lista di piatti. Ad esempio, la prima domanda "Quali sono i piatti che includono le Chocobo Wings come ingrediente?", ha come risposta "Galassia di Sapori: Il Viaggio Senza Tempo", mentre la domanda 10 "Quali piatti eterei sono preparati usando sia la Cottura Olografica Quantum Fluttuante che la Decostruzione Interdimensionale Lovecraftiana?" ha come risposta i piatti "Risotto dei Multiversi", "La Mucca Che Stordisce l'Universo" e "Sogni di Abisso Cosmico".
+Le domande sono ordinate per difficoltà e per tipologia. Per la precisione:
+- le domande di difficoltà **"Easy"** riguardano solo gli Ingredienti e le Tecniche, pertanto bastano solo i [Menu](./Dataset/knowledge_base/menu/) di ciascun ristorante
+- le domande di difficoltà **"Medium"** riguardano anche le Licenze e i Pianeti. Nei [Menu](./Dataset/knowledge_base/menu/) sono descritti il livello di Licenza di ogni Chef e il Pianeta su cui si trova il ristorante. Sebbene non necessario, all'interno del [`Manuale di Cucina.pdf`](./Dataset/knowledge_base/misc/Manuale%20di%20Cucina.pdf) e [`Codice Galattico.pdf`](./Dataset/knowledge_base/codice_galattico/Codice%20Galattico.pdf) vi è una descrizione di come funzionano le licenze.
+- le domande di difficoltà **"Hard"** riguardano le distanze tra pianeti, i tipi di cottura/preparazione e la licenza necessaria per la preparazione (ogni piatto necessita di certe tecniche e ogni tecnica necessita di certe licenze). Nel [`Distanze.csv`](./Dataset/knowledge_base/misc/Distanze.csv) c'è la tabella delle distanze tra pianeti. Il pdf [Manuale di Cucina.pdf](./Dataset/knowledge_base/misc/Manuale%20di%20Cucina.pdf) contiene le ultime due informazioni.
+- le domande di difficoltà **"Impossible"** riguardano piccoli dettagli che si trovano all'interno di [`Codice Galattico.pdf`](./Dataset/knowledge_base/codice_galattico/Codice%20Galattico.pdf) e [`Blog post`](./Dataset/knowledge_base/blogpost/)
 
-⚠️⚠️⚠️**IMPORTANTE**⚠️⚠️⚠️: Se hai poco tempo, sentiti di fermati SOLO alle domande di difficoltà "Easy". Decidi tu se vuoi migliorare la tua soluzione esistente o cercare di trovare soluzioni per domande più difficili. Un sistema capace di rispondere alle domande "Easy" è già un buon risultato.
+> [!WARNING]
+> ⚠️⚠️⚠️**IMPORTANTE**⚠️⚠️⚠️: Se hai poco tempo, puoi tranquillamente fermarti SOLO alle domande di difficoltà "Easy". Decidi tu se vuoi migliorare la tua soluzione esistente o cercare di trovare soluzioni per domande più difficili. Un sistema capace di rispondere alle domande "Easy" è già un buon risultato.
 
 ### Descrizione Knowledge Base 📋
 
 Dentro la cartella [knowledge_base](./Dataset/knowledge_base), ci sono tutti i file necessari per l'applicativo GenAI per rispondere alle domande.   
 
 All'interno troverai i seguenti file e cartelle:
+
+- [`Menu (30 ristoranti)`](./Dataset/knowledge_base/menu/)
+    
+    - Documenti in pdf contenenti i menù di 30 ristoranti differenti
+    - I menu descrivono in linguaggio naturale il ristorante, riportando il nome dello Chef, il nome del ristorante, (laddove presente) il pianeta su cui c'è il ristorante e le licenze culinarie che ha lo chef
+    - Ogni menu contiene 10 piatti
+    - Ogni piatto contiene gli ingredienti usati e le tecniche di preparazione
+    - Alcuni menu possiedono anche una descrizione in linguaggio naturale della preparazione
+    - Laddove vi siano certi *ordini professionali*, i menu lo citano
 
 - [`Manuale di Cucina.pdf`](./Dataset/knowledge_base/misc/Manuale%20di%20Cucina.pdf)
     
@@ -53,33 +63,24 @@ All'interno troverai i seguenti file e cartelle:
     - \[Hint\] La maggior parte del testo è flavour e non serve per rispondere alle domande.
     - \[Hint\] Gli ordini professionali sono perlopiù usati da alcuni utenti che esprimono una preferenza verso una specifica tecnica. Questa tecnica in genere è riportata nei menu attraverso l'uso di emoji + glossario.
 
-- [`Menu (30 ristoranti)`](./Dataset/knowledge_base/menu/)
-    
-    - Documenti in pdf contenenti i menù di 30 ristoranti differenti
-    - I menu descrivono in linguaggio naturale il ristorante, riportando il nome dello Chef, il nome del ristorante, (laddove presente) il pianeta su cui c'è il ristorante e le licenze culinarie che ha lo chef
-    - Ogni menu contiene 10 piatti
-    - Ogni piatto contiene gli ingredienti usati e le tecniche di preparazione
-    - Alcuni menu possiedono anche una descrizione in linguaggio naturale della preparazione
-    - Laddove vi siano certi ordini professionali, i menu lo citano
-
 - [`Distanze.csv`](./Dataset/knowledge_base/misc/Distanze.csv)
     Un csv che contiene la matrice delle distanze in anni luce tra i pianeti su cui si trovano i diversi ristoranti.    
-    \[Hint\] Alcune domande fanno riferimento a volere dei piatti all'interno di una certa distanza. Ogni ristorante (eccetto uno) si trova su un pianeta.
+    \[Hint\] Alcune domande fanno richiesta di piatti entro una certa distanza. Ogni ristorante (eccetto uno) si trova su un pianeta.
 
 - [`Codice Galattico.pdf`](./Dataset/knowledge_base/codice_galattico/Codice%20Galattico.pdf)
     
     Un documento legislativo contenente:
     
-    - Limiti quantitativi applicati all’utilizzo di alcuni ingredienti nella preparazione dei piatti
-    - \[Hint\] Alcuni utenti potrebbero chiedere che il loro piatto rispetti tali limiti, pertanto è necessario controllare la presenza di tali ingredienti e fare una crossref sulla quantità
+    - Limiti quantitativi applicati all'utilizzo di alcuni ingredienti nella preparazione dei piatti
+    - \[Hint\] Alcune domande richiedono piatti che rispettino questi limiti. Per rispondere, il sistema deve: (1) identificare se il piatto contiene ingredienti regolamentati, e (2) verificare che le quantità usate non superino i limiti previsti dal Codice Galattico.
     - Vincoli relativi alle certificazioni che gli chef hanno bisogno di acquisire per poter utilizzare specifiche tecniche di preparazione dei piatti
     - \[Hint\] Alcuni utenti potrebbero chiedere che lo chef che prepara il piatto abbia le certificazioni a norma per cucinare tale piatto, pertanto è necessario controllare per ogni tecnica se lo chef ha la certificazione al livello corretto
-    - \[Hint\] Questo documento, le informazioni da estrarre e da rielaborare, sono le più difficili del test tecnico e hanno impatto solo sulle ultime 4 domande del [csv](./Dataset/domande.csv).
+    - \[Hint\] Le informazioni contenute in questo documento sono le più difficili da estrarre e rielaborare dell'intero test tecnico. Tuttavia, hanno impatto solo sulle ultime 4 domande del [csv](./Dataset/domande.csv).
 
 - [`Blog post`](./Dataset/knowledge_base/blogpost/)
 
     - Pagine HTML che contengono informazioni supplementari su alcuni ristoranti
-    - \[Hint\] Sono necessari solo per un numero limitatissimo di domande, da usare congiuntamente con il Codice Galattico.pdf
+    - \[Hint\] Sono necessari solo per un numero limitato di domande, da usare congiuntamente con il Codice Galattico.pdf
 
 
 ### Evaluation
@@ -155,5 +156,5 @@ Una volta generato il file CSV con le tue risposte, puoi calcolare il punteggio 
 python src/evaluation.py --submission path/to/your_submission.csv
 ```
 
-Lo script stamperà il **Jaccard similarity score** medio complessivo.
+Lo script mostrerà il **Jaccard similarity score** medio complessivo.
 
